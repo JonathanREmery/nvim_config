@@ -8,7 +8,8 @@ This repository contains my custom Neovim setup.
 - **Language Support**: LSP integration via `nvim-lspconfig` and `mason.nvim`, with automatic server management through `mason-lspconfig.nvim`.
 - **Completion**: Powered by `nvim-cmp` with snippet support from `LuaSnip`, enhanced by AI assistance with `copilot.vim` and `CopilotChat.nvim`.
 - **Navigation**: Enhanced file and buffer navigation with `telescope.nvim`, `harpoon`, and a file explorer via `nvim-tree.lua`.
-- **Appearance**: `nightfox.nvim` with the `carbonfox` theme, a customized status line via `lualine.nvim`, and icon support with `nvim-web-devicons`.
+- **Appearance**: `nightfox.nvim` with the `carbonfox` theme, a customized status line via `lualine.nvim`, Markdown rendering with `render-markdown.nvim`, and icon support with `nvim-web-devicons`.
+- **Version Control**: Git integration with `gitsigns.nvim` for diff signs and hunk navigation.
 - **Customizations**: Keybindings, window management, editor settings, and a commenting tool with `Comment.nvim`.
 
 ## Plugins
@@ -35,3 +36,5 @@ This repository contains my custom Neovim setup.
 | `CopilotChat.nvim`      | AI chat interface        | Chat with Copilot, code review, optimization     |
 | `nvim-tree.lua`         | File explorer            | Tree-style navigation, toggle with `<leader>t`   |
 | `nvim-web-devicons`     | Icon support             | Enhances UI with file type icons                 |
+| `gitsigns.nvim`         | Git integration          | Diff signs, hunk navigation (e.g., `<leader>gn`) |
+| `render-markdown.nvim`  | Markdown rendering       | Renders Markdown in buffers, supports CopilotChat|
