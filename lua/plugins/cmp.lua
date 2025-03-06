@@ -49,13 +49,13 @@ return {
                     end, {"i", "s"}),
 
                     -- Accept completion
-                    ["<CR>"] = cmp.mapping.confirm({select = true}),
+                    ["<CR>"] = cmp.mapping.confirm({select = false}),
                 }),
                 sources = {
                     {name = "nvim_lsp"}, -- LSP completions
                     {name = "luasnip"},  -- Snippet completions
                     {name = "buffer"},   -- Buffer words
-                    {name = "path"},     -- File paths
+                    {name = "path"}      -- File paths
                 },
             })
         end,

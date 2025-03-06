@@ -54,3 +54,9 @@ vim.keymap.set("n", "<leader>wl", "<C-w>l", opts)
 
 -- Window close
 vim.keymap.set("n", "<leader>wc", ":close<CR>", opts)
+
+-- Disable auto commenting
+vim.cmd("autocmd  FileType * set formatoptions-=ro")
+
+-- Split right by default
+vim.opt.splitright = true
