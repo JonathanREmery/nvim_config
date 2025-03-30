@@ -16,10 +16,5 @@ return {
             signcolumn = true, -- Enable the sign column
             numhl      = true, -- Highlight line numbers
         })
-
-        -- Set keymaps
-        local gs = require("gitsigns")
-        vim.keymap.set("n", "<leader>gn", gs.next_hunk)
-        vim.keymap.set("n", "<leader>gp", gs.prev_hunk)
     end
 }

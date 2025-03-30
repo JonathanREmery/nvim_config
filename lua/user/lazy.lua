@@ -25,15 +25,16 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
     -- Import plugins
-    spec = { import = "plugins" },
+    {import = "plugins.nvim", cond = (function() return not vim.g.vscode end)},
+    {import = "plugins.all",  cond = true},
     -- Configure checker
     checker = {
         enabled = true, -- Automatically check for updates
-        notify = false  -- Don't notify about updates
+        notify  = false  -- Don't notify about updates
     },
     -- Configure config change detection
     change_detection = {
         enabled = true, -- Automatically detect config changes
-        notify = false  -- Don't notify about config changes
+        notify  = false  -- Don't notify about config changes
     }
 })

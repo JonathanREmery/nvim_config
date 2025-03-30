@@ -10,8 +10,8 @@ return {
 
             -- Setup Copilot keymaps
             local opts = {expr = true, silent = true, replace_keycodes = false}
-            vim.keymap.set("i", "<C-j>", "copilot#Accept()", opts)
-            vim.keymap.set("i", "<C-l>", "copilot#AcceptWord()", opts)
+            vim.keymap.set("i", "<Tab>",     "copilot#Accept()",     opts)
+            vim.keymap.set("i", "<C-S-Tab>", "copilot#AcceptWord()", opts)
         end
     },
     {
@@ -31,15 +31,6 @@ return {
                 -- Default model
                 model = "claude-3.5-sonnet"
             })
-
-            -- Setup CopilotChat keymaps
-            local opts = {silent = true}
-            vim.keymap.set("n", "<leader>ac", ":CopilotChatToggle<CR>",   opts)
-            vim.keymap.set("n", "<leader>an", ":CopilotChatReset<CR>",    opts)
-            vim.keymap.set("v", "<leader>ad", ":CopilotChatDocs<CR>",     opts)
-            vim.keymap.set("v", "<leader>ae", ":CopilotChatExplain<CR>",  opts)
-            vim.keymap.set("v", "<leader>ar", ":CopilotChatReview<CR>",   opts)
-            vim.keymap.set("v", "<leader>ao", ":CopilotChatOptimize<CR>", opts)
         end
     }
 }

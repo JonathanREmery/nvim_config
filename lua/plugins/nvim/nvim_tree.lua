@@ -26,13 +26,5 @@ return {
                 dotfiles = false,   -- Show dotfiles
             },
         })
-
-        -- Toggle nvim-tree
-        vim.keymap.set(
-            "n",
-            "<leader>t",
-            ":NvimTreeToggle<CR>",
-            {noremap = true, silent = true}
-        )
     end,
 }
