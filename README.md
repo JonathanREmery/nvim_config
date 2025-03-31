@@ -5,7 +5,7 @@ This repository contains my custom Neovim setup.
 ## Overview
 
 - **Plugin Manager**: `lazy.nvim` for lazy-loading and managing plugins.
-- **Language Support**: LSP integration via `nvim-lspconfig` and `mason.nvim`.
+- **Language Support**: Syntax analysis with `nvim-treesitter`, LSP integration via `nvim-lspconfig` and `mason.nvim`.
 - **Completion**: Powered by `nvim-cmp` with snippet support from `LuaSnip`.
 - **Navigation**: Enhanced file and buffer navigation with `telescope.nvim`, `harpoon`, and a file explorer via `nvim-tree.lua`.
 - **Appearance**: `Moegi Black Zen` theme ported from VSCode, a customized status line via `lualine.nvim`, Markdown rendering with `render-markdown.nvim`, and icon support with `nvim-web-devicons`.
@@ -20,8 +20,9 @@ This repository contains my custom Neovim setup.
 | `telescope.nvim`        | Fuzzy finder             | File search, grep, and help navigation           |
 | `harpoon`               | Buffer navigation        | Quick access to marked buffers (e.g., `<leader>1-9>`) |
 | `lualine.nvim`          | Status line              | Customizable with `moonfly` theme                |
-| `nvim-lspconfig`        | LSP configuration        | Language server support                          |
+| `nvim-treesitter`       | Syntax Analysis          | Parsing library that provides CSTs for use with other plugins |
 | `mason.nvim`            | LSP server management    | Auto-installs `lua_ls` and `clangd`              |
+| `nvim-lspconfig`        | LSP configuration        | Language server support                          |
 | `nvim-cmp`              | Completion engine        | LSP, snippets, buffer, and path sources          |
 | `LuaSnip`               | Snippet engine           | Integrated with `nvim-cmp`                       |
 | `cmp-nvim-lsp`          | LSP source               | LSP completions for `nvim-cmp`                   |

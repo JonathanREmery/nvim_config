@@ -50,7 +50,7 @@ if (not vim.g.vscode) then
     vim.keymap.set("n", "<leader>wv", ":vsplit<CR>", opts)
     vim.keymap.set("n", "<leader>wh", ":split<CR>",  opts)
     vim.keymap.set("n", "<leader>wc", ":close<CR>",  opts)
-    vim.keymap.set("n", "<leader>q",  ":q!<CR>",     opts)
+    vim.keymap.set("n", "<leader>q",  ":qa!<CR>",     opts)
 else
     local vscode = require("vscode")
     vim.keymap.set(
@@ -75,8 +75,8 @@ else
     )
     vim.keymap.set(
         "n",
-        "<leader>wq",
-        function() vscode.action("workbench.action.closeEditorsInGroup") end
+        "<leader>q",
+        function() vscode.action("workbench.action.closeWindow") end
     )
 end
 
@@ -103,7 +103,7 @@ else
     vim.keymap.set(
         "n",
         "<leader>ss",
-        function() vscode.action("workbench.action.gotoSymbol") end
+        function() vscode.action("workbench.action.findInFiles") end
     )
 end
 
@@ -219,15 +219,32 @@ end
 -- LSP
 if (not vim.g.vscode) then
     opts = {buffer=bufnr, noremap=true, silent=true}
-    vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, opts)
-    vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition,      opts)
-    vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration,     opts)
-    vim.keymap.set("n", "<leader>li", vim.lsp.buf.hover,           opts)
-    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename,          opts)
-    vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references,      opts)
+    local telescope_builtin = require("telescope.builtin")
+    vim.keymap.set(
+        "n",
+        "<leader>ls",
+        telescope_builtin.treesitter,
+        opts
+    )
+    vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition,  opts)
+    vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "<leader>li", vim.lsp.buf.hover,       opts)
+    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename,      opts)
+    vim.keymap.set(
+        "n",
+        "<leader>lR",
+        telescope_builtin.lsp_references,
+        opts
+    )
 else
     opts = {noremap=true, silent=true}
     local vscode = require("vscode")
+    vim.keymap.set(
+        "n",
+        "<leader>ls",
+        function() vscode.action("editor.action.goToSymbol") end,
+        opts
+    )
     vim.keymap.set(
         "n",
         "<leader>ld",
@@ -264,7 +281,10 @@ comment.setup({
 })
 
 -- Diagnostic
-vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, opts)
+if (not vim.g.vscode) then
+    local telescope_builtin = require("telescope.builtin")
+    vim.keymap.set("n", "<leader>do", telescope_builtin.diagnostics, opts)
+end
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next,  opts)
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev,  opts)
 
@@ -273,72 +293,150 @@ if (not vim.g.vscode) then
     local gitsigns = require("gitsigns")
     vim.keymap.set("n", "<leader>gn", gitsigns.next_hunk)
     vim.keymap.set("n", "<leader>gp", gitsigns.prev_hunk)
+else
+    local vscode = require("vscode")
+    vim.keymap.set(
+        "n",
+        "<leader>gn",
+        function() vscode.action("workbench.action.editor.nextChange") end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>gp",
+        function() vscode.action("workbench.action.editor.previousChange") end,
+        opts
+    )
 end
 
 -- Harpoon
-local harpoon = require("harpoon")
-vim.keymap.set(
-    "n",
-    "<leader>hm",
-    function() harpoon.ui:toggle_quick_menu(harpoon:list()) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>ha",
-    function() harpoon:list():add() end
-)
-vim.keymap.set(
-    "n",
-    "<leader>hc",
-    function() harpoon:list():clear() end
-)
+if (not vim.g.vscode) then
+    local harpoon = require("harpoon")
+    vim.keymap.set(
+        "n",
+        "<leader>hm",
+        function() harpoon.ui:toggle_quick_menu(harpoon:list()) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>ha",
+        function() harpoon:list():add() end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>hc",
+        function() harpoon:list():clear() end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>1",
+        function() harpoon:list():select(1) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>2",
+        function() harpoon:list():select(2) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>3",
+        function() harpoon:list():select(3) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>4",
+        function() harpoon:list():select(4) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>5",
+        function() harpoon:list():select(5) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>6",
+        function() harpoon:list():select(6) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>7",
+        function() harpoon:list():select(7) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>8",
+        function() harpoon:list():select(8) end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>9",
+        function() harpoon:list():select(9) end
+    )
+else
+    local vscode = require("vscode")
+    vim.keymap.set(
+        "n",
+        "<leader>hm",
+        function() vscode.action("vscode-harpoon.editEditors") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>ha",
+        function() vscode.action("vscode-harpoon.addEditor") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>hc",
+        function() vscode.action("vscode-harpoon.editEditors") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>1",
+        function() vscode.action("vscode-harpoon.gotoEditor1") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>2",
+        function() vscode.action("vscode-harpoon.gotoEditor2") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>3",
+        function() vscode.action("vscode-harpoon.gotoEditor3") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>4",
+        function() vscode.action("vscode-harpoon.gotoEditor4") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>5",
+        function() vscode.action("vscode-harpoon.gotoEditor5") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>6",
+        function() vscode.action("vscode-harpoon.gotoEditor6") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>7",
+        function() vscode.action("vscode-harpoon.gotoEditor7") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>8",
+        function() vscode.action("vscode-harpoon.gotoEditor8") end
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>9",
+        function() vscode.action("vscode-harpoon.gotoEditor9") end
+    )
+end
 vim.keymap.set(
     "n",
     "<leader>0",
     function() vim.cmd("e ~/.config/nvim/lua/user/keymaps.lua") end
-)
-vim.keymap.set(
-    "n",
-    "<leader>1",
-    function() harpoon:list():select(1) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>2",
-    function() harpoon:list():select(2) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>3",
-    function() harpoon:list():select(3) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>4",
-    function() harpoon:list():select(4) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>5",
-    function() harpoon:list():select(5) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>6",
-    function() harpoon:list():select(6) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>7",
-    function() harpoon:list():select(7) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>8",
-    function() harpoon:list():select(8) end
-)
-vim.keymap.set(
-    "n",
-    "<leader>9",
-    function() harpoon:list():select(9) end
 )
