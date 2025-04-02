@@ -83,7 +83,12 @@ end
 -- Search
 if (not vim.g.vscode) then
     local telescope_builtin = require("telescope.builtin")
-    vim.keymap.set("n", "<leader>sf", telescope_builtin.find_files, opts)
+    vim.keymap.set(
+        "n",
+        "<leader>sf",
+        function() telescope_builtin.find_files({hidden = true}) end,
+        opts
+    )
     vim.keymap.set("n", "<leader>sb", telescope_builtin.buffers,    opts)
     vim.keymap.set("n", "<leader>ss", telescope_builtin.live_grep,  opts)
 else
@@ -112,7 +117,12 @@ if (not vim.g.vscode) then
     local telescope_builtin = require("telescope.builtin")
 
     vim.keymap.set("n", "<leader>fe", ":NvimTreeToggle<CR>",        opts)
-    vim.keymap.set("n", "<leader>fo", telescope_builtin.find_files, opts)
+    vim.keymap.set(
+        "n",
+        "<leader>fo",
+        function() telescope_builtin.find_files({hidden = true}) end,
+        opts
+    )
 else
     local vscode = require("vscode")
     vim.keymap.set(
@@ -440,3 +450,13 @@ vim.keymap.set(
     "<leader>0",
     function() vim.cmd("e ~/.config/nvim/lua/user/keymaps.lua") end
 )
+
+-- Command Palette
+if (vim.g.vscode) then
+    local vscode = require("vscode")
+    vim.keymap.set(
+        "n",
+        "<leader><leader>",
+        function() vscode.action("workbench.action.showCommands") end
+    )
+end

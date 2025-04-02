@@ -13,8 +13,8 @@ return {
                 "markdown_inline"
             },
             sync_install = false,
-            highlight    = {enable = true},
-            indent       = {enable = true}
+            highlight    = {enable = false},
+            indent       = {enable = false}
         })
     end
 }
